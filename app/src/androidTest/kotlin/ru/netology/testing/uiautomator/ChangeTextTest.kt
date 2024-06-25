@@ -114,12 +114,13 @@ class ChangeTextTest {
     fun testEmptyText() {
         val packageName = MODEL_PACKAGE
         waitForPackage(packageName)
+        val someText = device.findObject(By.res(packageName, "textToBeChanged")).text
 
         device.findObject(By.res(packageName, "userInput")).text = "   "
         device.findObject(By.res(packageName, "buttonChange")).click()
 
         val result = device.findObject(By.res(packageName, "textToBeChanged")).text
-        assertEquals(result, R.string.hello_world)
+        assertEquals(result, someText)
     }
 
     @Test
